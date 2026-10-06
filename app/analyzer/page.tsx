@@ -37,7 +37,7 @@ export default function AnalyzerPage() {
 
   return (
     <ProtectedRoute>
-      <h1 className="mb-4 text-xl font-semibold">Message Analyzer</h1>
+      <h1 className="mb-4 text-xl font-semibold text-blue-600">Message Analyzer</h1>
       <form onSubmit={handleAnalyze} className="space-y-3">
         <textarea
           className="h-40 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-brand-500 focus:outline-none"
