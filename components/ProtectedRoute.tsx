@@ -20,7 +20,7 @@ export default function ProtectedRoute({
 
   if (isLoading || !isAuthenticated) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center text-slate-500">
+      <div className="flex min-h-[60vh] items-center justify-center text-slate-400">
         Loading...
       </div>
     );

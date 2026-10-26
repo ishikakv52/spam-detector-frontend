@@ -13,6 +13,9 @@ interface Profile {
   date_joined: string;
 }
 
+const inputClass =
+  "w-full rounded-md border border-[#1b2d57] bg-[#0a1630] px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-[#1e90ff] focus:outline-none focus:ring-2 focus:ring-[#1e90ff]/30";
+
 export default function ProfilePage() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [firstName, setFirstName] = useState("");
@@ -55,65 +58,65 @@ export default function ProfilePage() {
 
   return (
     <ProtectedRoute>
-      <h1 className="mb-4 text-xl font-semibold">Profile</h1>
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {!profile && !error && <p className="text-sm text-slate-500">Loading...</p>}
+      <h1 className="mb-4 text-xl font-semibold text-white">Profile</h1>
+      {error && <p className="text-sm text-red-300">{error}</p>}
+      {!profile && !error && <p className="text-sm text-slate-400">Loading...</p>}
 
       {profile && (
         <form
           onSubmit={handleSave}
-          className="max-w-md space-y-4 rounded-xl border border-slate-200 bg-white p-5"
+          className="max-w-md space-y-4 rounded-xl border border-[#12306e] bg-[#06112a]/90 p-5"
         >
           <div>
-            <label className="mb-1 block text-sm text-slate-600">Username</label>
+            <label className="mb-1 block text-sm text-slate-300">Username</label>
             <input
               disabled
               value={profile.username}
-              className="w-full rounded-md border border-slate-200 bg-slate-100 px-3 py-2 text-sm text-slate-500"
+              className="w-full rounded-md border border-[#12306e] bg-[#06112a] px-3 py-2 text-sm text-slate-500"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-slate-600">Email</label>
+            <label className="mb-1 block text-sm text-slate-300">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none"
+              className={inputClass}
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm text-slate-600">
+              <label className="mb-1 block text-sm text-slate-300">
                 First name
               </label>
               <input
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none"
+                className={inputClass}
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm text-slate-600">
+              <label className="mb-1 block text-sm text-slate-300">
                 Last name
               </label>
               <input
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none"
+                className={inputClass}
               />
             </div>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Joined {new Date(profile.date_joined).toLocaleDateString()}
           </p>
           <button
             type="submit"
             disabled={saving}
-            className="rounded-md bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-60"
+            className="rounded-md bg-gradient-to-r from-[#0a84ff] to-[#0b5cff] px-4 py-2 text-sm font-semibold text-white hover:brightness-110 disabled:opacity-60"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>
-          {saved && <p className="text-sm text-green-600">Profile updated.</p>}
+          {saved && <p className="text-sm text-emerald-300">Profile updated.</p>}
         </form>
       )}
     </ProtectedRoute>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { ShieldMail } from "@/components/AuthArt";
 
 const LINKS = [
   { href: "/dashboard", label: "Dashboard" },
@@ -18,9 +19,14 @@ export default function Navbar() {
   if (!isAuthenticated) return null;
 
   return (
-    <nav className="border-b border-slate-200 bg-white">
+    <nav className="border-b border-[#12306e] bg-[#06112a]/90 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <span className="font-semibold text-brand-700">Spam Detector</span>
+        <span className="flex items-center gap-2 font-bold text-white">
+          <ShieldMail className="h-6 w-5" />
+          <span>
+            Spam<span className="text-[#1e90ff]">Detector</span>
+          </span>
+        </span>
         <div className="flex items-center gap-4 text-sm">
           {LINKS.map((link) => (
             <Link
@@ -28,8 +34,8 @@ export default function Navbar() {
               href={link.href}
               className={
                 pathname === link.href
-                  ? "font-medium text-brand-600"
-                  : "text-slate-600 hover:text-brand-600"
+                  ? "font-semibold text-[#1e90ff]"
+                  : "text-slate-400 hover:text-white"
               }
             >
               {link.label}
@@ -37,7 +43,7 @@ export default function Navbar() {
           ))}
           <button
             onClick={logout}
-            className="rounded-md bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-slate-200"
+            className="rounded-md border border-[#1b2d57] bg-[#0a1630] px-3 py-1.5 text-slate-200 hover:bg-[#12306e]"
           >
             Logout
           </button>

@@ -51,30 +51,30 @@ export default function MessageDetailPage() {
 
   return (
     <ProtectedRoute>
-      <h1 className="mb-4 text-xl font-semibold">Message Details</h1>
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {!record && !error && <p className="text-sm text-slate-500">Loading...</p>}
+      <h1 className="mb-4 text-xl font-semibold text-white">Message Details</h1>
+      {error && <p className="text-sm text-red-300">{error}</p>}
+      {!record && !error && <p className="text-sm text-slate-400">Loading...</p>}
 
       {record && (
         <div className="space-y-4">
-          <div className="rounded-xl border border-slate-200 bg-white p-4">
-            <p className="text-xs text-slate-500">Original message</p>
-            <p className="mt-1 whitespace-pre-wrap text-sm">
+          <div className="rounded-xl border border-[#12306e] bg-[#06112a]/90 p-4">
+            <p className="text-xs text-slate-400">Original message</p>
+            <p className="mt-1 whitespace-pre-wrap text-sm text-slate-200">
               {record.message_text}
             </p>
-            <p className="mt-2 text-xs text-slate-400">
+            <p className="mt-2 text-xs text-slate-500">
               Analyzed on {new Date(record.created_at).toLocaleString()}
             </p>
           </div>
 
           <ResultCard record={record} />
 
-          <div className="rounded-xl border border-slate-200 bg-white p-4">
-            <label className="mb-1 block text-xs font-medium text-slate-500">
+          <div className="rounded-xl border border-[#12306e] bg-[#06112a]/90 p-4">
+            <label className="mb-1 block text-xs font-medium text-slate-400">
               Your notes
             </label>
             <textarea
-              className="h-24 w-full rounded-md border border-slate-300 p-2 text-sm focus:border-brand-500 focus:outline-none"
+              className="h-24 w-full rounded-md border border-[#1b2d57] bg-[#0a1630] p-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-[#1e90ff] focus:outline-none focus:ring-2 focus:ring-[#1e90ff]/30"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
             />
@@ -82,19 +82,19 @@ export default function MessageDetailPage() {
               <button
                 onClick={handleSaveNotes}
                 disabled={saving}
-                className="rounded-md bg-brand-600 px-4 py-1.5 text-sm text-white hover:bg-brand-700 disabled:opacity-60"
+                className="rounded-md bg-gradient-to-r from-[#0a84ff] to-[#0b5cff] px-4 py-1.5 text-sm font-semibold text-white hover:brightness-110 disabled:opacity-60"
               >
                 {saving ? "Saving..." : "Save Notes"}
               </button>
               {savedMsg && (
-                <span className="text-sm text-green-600">{savedMsg}</span>
+                <span className="text-sm text-emerald-300">{savedMsg}</span>
               )}
             </div>
           </div>
 
           <button
             onClick={handleDelete}
-            className="rounded-md border border-red-200 px-4 py-1.5 text-sm text-red-600 hover:bg-red-50"
+            className="rounded-md border border-red-500/40 px-4 py-1.5 text-sm text-red-300 hover:bg-red-500/10"
           >
             Delete Record
           </button>

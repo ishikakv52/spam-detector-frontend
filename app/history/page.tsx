@@ -18,14 +18,14 @@ export default function HistoryPage() {
 
   return (
     <ProtectedRoute>
-      <h1 className="mb-4 text-xl font-semibold">Detection History</h1>
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {!messages && !error && <p className="text-sm text-slate-500">Loading...</p>}
+      <h1 className="mb-4 text-xl font-semibold text-white">Detection History</h1>
+      {error && <p className="text-sm text-red-300">{error}</p>}
+      {!messages && !error && <p className="text-sm text-slate-400">Loading...</p>}
 
       {messages && messages.length === 0 && (
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-slate-400">
           No messages analyzed yet.{" "}
-          <Link href="/analyzer" className="text-brand-600 hover:underline">
+          <Link href="/analyzer" className="text-[#1e90ff] hover:underline">
             Analyze your first message
           </Link>
           .
@@ -33,9 +33,9 @@ export default function HistoryPage() {
       )}
 
       {messages && messages.length > 0 && (
-        <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
-          <table className="w-full text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase text-slate-500">
+        <div className="overflow-x-auto rounded-xl border border-[#12306e] bg-[#06112a]/90">
+          <table className="w-full text-left text-sm text-slate-200">
+            <thead className="border-b border-[#12306e] bg-[#0a1630] text-xs uppercase text-slate-400">
               <tr>
                 <th className="px-4 py-2">Message</th>
                 <th className="px-4 py-2">Result</th>
@@ -43,11 +43,11 @@ export default function HistoryPage() {
                 <th className="px-4 py-2">Date</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-[#12306e]">
               {messages.map((m) => (
                 <tr
                   key={m.id}
-                  className="cursor-pointer hover:bg-slate-50"
+                  className="cursor-pointer hover:bg-[#0a1630]"
                   onClick={() => (window.location.href = `/history/${m.id}`)}
                 >
                   <td className="max-w-xs truncate px-4 py-2">
@@ -57,15 +57,15 @@ export default function HistoryPage() {
                     <span
                       className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                         m.classification === "spam"
-                          ? "bg-red-100 text-red-700"
-                          : "bg-green-100 text-green-700"
+                          ? "bg-red-500/15 text-red-300 ring-1 ring-red-500/30"
+                          : "bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30"
                       }`}
                     >
                       {m.classification === "spam" ? "Spam" : "Not Spam"}
                     </span>
                   </td>
-                  <td className="px-4 py-2 text-slate-600">{m.category}</td>
-                  <td className="px-4 py-2 text-slate-500">
+                  <td className="px-4 py-2 text-slate-300">{m.category}</td>
+                  <td className="px-4 py-2 text-slate-400">
                     {new Date(m.created_at).toLocaleDateString()}
                   </td>
                 </tr>
